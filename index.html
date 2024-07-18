@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload dan Tampilkan PDF</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffcc33, #ff6666);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        #upload-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #upload-button:hover {
+            background-color: #0056b3;
+        }
+        #pdf-display {
+            width: 100%;
+            height: 70vh;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 768px) {
+            #pdf-display {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload dan Tampilkan PDF</h1>
+    <div class="container">
+        <input type="file" id="upload-button" accept="application/pdf" />
+        <iframe id="pdf-display"></iframe>
+    </div>
+
+    <script>
+        document.getElementById('upload-button').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'application/pdf') {
+                const fileURL = URL.createObjectURL(file);
+                document.getElementById('pdf-display').src = fileURL;
+            } else {
+                alert('Harap unggah file PDF');
+            }
+        });
+    </script>
+</body>
+</html>
